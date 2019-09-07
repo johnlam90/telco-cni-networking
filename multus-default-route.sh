@@ -36,6 +36,7 @@ ipsub=$(ip route | awk '/proto/ && !/default/ {print $1}')
 
 #store subnet without the "/"  as variable $subval
 subval=$(route -n | grep -w 'U' | awk '{print $1}')
+
 #Since multus does not push the Gateway for net1 into the routing table, I was able to acquire the GW by taking the $subval viariable and adding +1 to the last octet, storing in variable $gw
 #Note the below command assumes the GW is the 1st IP after the network ID. This assumtion is made specific to the project CIQ. Eg if your network is 10.46.90.224/27 , the GW will be 10.46.90.225 (10.46.90.224+1).
 # Alternatively you can change the $gw value with your IP GW or call the variable using a values.yaml file when using helm
