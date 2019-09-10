@@ -15,11 +15,12 @@ apk add which
 
 PACKAGE1=iproute2
 PACKAGE2=net-tools
+PACKAGE3=iproute
 #This condition will check for distro and install packages based on that
 YUM_CMD=$(which yum)
 APK_CMD=$(which apk)
 if [[ ! -z $YUM_CMD ]]; then
-   yum install -y $PACKAGE1
+   yum install -y $PACKAGE3
    yum install -y $PACKAGE2
 elif [[ ! -z $APK_CMD ]]; then
    apk add $PACKAGE1
