@@ -5,7 +5,7 @@ Ideally this script can me mounted using a configMap with an Init Container. For
 
 
 
-Example: 
+## Example: 
 
 ### Storing a configuration as a Custom Resource
 
@@ -40,14 +40,15 @@ spec:
 EOF
 ```
 
-Step 2:
 
-Create a configMap using the multus-default-route.sh
 
+### Create a configMap using the multus-default-route.sh
+
+```
 kubectl create configmap wrapper --from-file=multus-default-route.sh
+```
 
-Step 3:
-Create POD with an InitContainer which will mount you configMap and run your bash script 
+### Create POD with an InitContainer which will mount you configMap and run your bash script 
 
 ```
 cat <<EOF | kubectl create -f -
