@@ -4,6 +4,9 @@
 
 ########### PACKAGE INSTALLATION ################################
 #Install iproute2 and net-tools to create route tables and view ip/route info
+yum install which -y
+apk add which
+
 PACKAGE1=iproute2
 PACKAGE2=net-tools
 #This condition will check for distro and install packages based on that
