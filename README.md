@@ -19,7 +19,7 @@ Ideally this script can me mounted using a configMap with an Init Container. For
 ### Clone repository 
 ```
 git clone https://github.com/lam42/telco-cni-networking.git
-cd telco-cni-networking.git
+cd telco-cni-networking.git/
 ```
 
 
