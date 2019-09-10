@@ -7,8 +7,9 @@ Ideally this script can me mounted using a configMap with an Init Container. For
 
 Example: 
 
-Step 1: Create Multus CRD 
+### Storing a configuration as a Custom Resource
 
+```
 cat <<EOF | kubectl create -f -
 apiVersion: "http://k8s.cni.cncf.io/v1"
 kind: NetworkAttachmentDefinition
@@ -37,6 +38,7 @@ spec:
       }
     }'
 EOF
+```
 
 Step 2:
 
@@ -47,6 +49,7 @@ kubectl create configmap wrapper --from-file=multus-default-route.sh
 Step 3:
 Create POD with an InitContainer which will mount you configMap and run your bash script 
 
+```
 cat <<EOF | kubectl create -f -
 apiVersion: v1
 kind: Pod
@@ -78,7 +81,7 @@ spec:
     securityContext:
       privileged: true
 EOF
-
+```
 
 
 
