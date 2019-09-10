@@ -58,7 +58,7 @@ EOF
 
 
 
-### Create a configMap using the multus-default-route.sh
+### Create a configMap using the [multus-default-route.sh](https://github.com/lam42/telco-cni-networking/blob/master/multus-default-route.sh) script
 
 ```
 kubectl create configmap wrapper --from-file=multus-default-route.sh
