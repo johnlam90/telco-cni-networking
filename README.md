@@ -75,7 +75,7 @@ metadata:
   annotations:
     k8s.v1.cni.cncf.io/networks:  multus-test
 spec:
-  nodeName: worker-1.oc-test.cch-nam.nsn-rdnet.net
+  nodeName: worker-1
   initContainers:
   - name: samplepod
     command: ["/tmp/multus-default-route.sh"]
