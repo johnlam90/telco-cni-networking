@@ -14,7 +14,7 @@ cat <<EOF | kubectl create -f -
 apiVersion: "http://k8s.cni.cncf.io/v1"
 kind: NetworkAttachmentDefinition
 metadata:
-  name: route-auto
+  name: multus-test
 spec:
   config: '{
       "cniVersion": "0.3.0",
@@ -57,7 +57,7 @@ kind: Pod
 metadata:
   name: samplepod-9
   annotations:
-    k8s.v1.cni.cncf.io/networks:  vudm-http2
+    k8s.v1.cni.cncf.io/networks:  multus-test
 spec:
   nodeName: worker-1.oc-test.cch-nam.nsn-rdnet.net
   initContainers:
