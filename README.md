@@ -1,6 +1,7 @@
 # Multus default route manipulation from within the POD 
+![Travis CI](https://travis-ci.org/redhat-nfvpe/telco-cni-networking.svg?branch=master)
 
-This script was created to bypass the Multus limitation where default routes cannot be defined during Network CRD creation
+This script was created to bypass the [Multus limitation](https://github.com/intel/multus-cni/issues/349) where default routes cannot be defined during Network CRD creation
 Ideally this script can me mounted using a configMap with an Init Container. For testing purpose , you can run this script once the POD is created and depending on your privlege level
 
 
@@ -10,7 +11,7 @@ Ideally this script can me mounted using a configMap with an Init Container. For
 - Kubernetes installed and have configured a default network -- that is, a CNI plugin that's used for your pod-to-pod connectivity.
 - Multus installed and configured. Refer to [multus](https://github.com/intel/multus-cni).
 - Network Interfaces attached that will be used for Network CRD creation.
-
+- If you plan to use ipvlan, make sure kernel is upgraded to [4.4](https://github.com/intel/multus-cni/issues/347)
 
 
 ## Example: 
