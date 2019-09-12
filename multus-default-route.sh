@@ -29,17 +29,19 @@ else
    echo "error can't install package $PACKAGE"
    exit 1;
 fi
-
+############### Number of net* interfaces in a pod ############
+ifcount=$(ip a | grep 'net' | grep 'inet' -v | grep 'netns' -v -c)
 
 ############### STORING VARIABLES ##############################
 #store ip address of net1 as a variable $ip4
 ip4=$(/sbin/ip -o -4 addr list net1 | awk '{print $4}' | cut -d/ -f1)
 
 #store ip subnet of net1 as variable $ipsub
-ipsub=$(ip route | awk '/proto/ && !/default/ {print $1}')
+ipsub=$(ip route | awk '/proto/ && /net1/ && !/default/ {print $1}')
 
 #store subnet without the "/"  as variable $subval
 subval=$(route -n | grep -w 'U' | awk '{print $1}')
+netsubval=$(echo $subval | cut -f 2 -d " ")
 
 #Since multus does not push the Gateway for net1 into the routing table, I was able to acquire the GW by taking the $subval viariable and adding +1 to the last octet, storing in variable $gw
 #Note the below command assumes the GW is the 1st IP after the network ID. This assumtion is made specific to the project CIQ. Eg if your network is 10.46.90.224/27 , the GW will be 10.46.90.225 (10.46.90.224+1).
