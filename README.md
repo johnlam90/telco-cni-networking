@@ -10,6 +10,7 @@ Ideally this script can me mounted using a configMap with an Init Container. For
 - Kubernetes installed and have configured a default network -- that is, a CNI plugin that's used for your pod-to-pod connectivity.
 - Multus installed and configured. Refer to [multus](https://github.com/intel/multus-cni).
 - Network Interfaces attached that will be used for Network CRD creation.
+- If you plan to use ipvlan, make sure kernel is upgraded to 4.4
 
 
 
