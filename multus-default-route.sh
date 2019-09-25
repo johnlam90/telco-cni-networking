@@ -44,7 +44,8 @@ while [[ $C -le $ifcount ]]; do
 	ipsub=$(ip route | grep net$C | awk '{print $1}')
 
 	#store subnet without the "/"  as variable $subval
-	subval=$(route -n | grep -w 'U' | awk '{print $1}')
+	#subval=$(route -n | grep -w 'U' | awk '{print $1}')
+	subval=$(route -n | grep -w 'U' | sort -r | awk '{print $1}')
 	netsubval=$(echo $subval | cut -f $C -d " ")
 
 	#Since multus does not push the Gateway for net1 into the routing table, I was able to acquire the GW by taking the $netsubval viariable and adding +1 to the last octet, storing in variable $gw
