@@ -55,7 +55,7 @@ while [[ $C -le $ifcount ]]; do
 	################ CONFIGURE ROUTING #############################
 	# Add route tables (t1,t2,t3...tn) if not present in the rt_table with sequence (100,101,102...n) 
 	grep "t$C" /etc/iproute2/rt_tables || echo 10$C t$C >> /etc/iproute2/rt_tables
-	ip route show table t$C | grep $ip4 || ip route add $ipsub dev net1 src $ip4 table t$C
+	ip route show table t$C | grep $ip4 || ip route add $ipsub dev net$C src $ip4 table t$C
 	ip route show table t$C | grep default ||ip route add table t$C default via $gw dev net$C
 	ip rule add table t$C from $ip4
 	sysctl net.ipv4.conf.default.arp_filter=1
