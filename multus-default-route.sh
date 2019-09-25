@@ -45,8 +45,11 @@ while [[ $C -le $ifcount ]]; do
 
 	#store subnet without the "/"  as variable $subval
 	#subval=$(route -n | grep -w 'U' | awk '{print $1}')
-	subval=$(route -n | grep -w 'U' | sort -r | awk '{print $1}')
-	netsubval=$(echo $subval | cut -f $C -d " ")
+	#subval=$(route -n | grep -w 'U' | sort -r | awk '{print $1}')
+	#netsubval=$(echo $subval | cut -f $C -d " ")
+	
+	# Changed grep pattern for subnet value to fix errors with incorrect value being taken over by previous commands.
+	netsubval=$(route -n | grep -w net$C | awk '{print $1}')   
 
 	#Since multus does not push the Gateway for net1 into the routing table, I was able to acquire the GW by taking the $netsubval viariable and adding +1 to the last octet, storing in variable $gw
 	#Note the below command assumes the GW is the 1st IP after the network ID. This assumtion is made specific to the project CIQ. Eg if your network is 10.46.90.224/27 , the GW will be 10.46.90.225 (10.46.90.224+1).
