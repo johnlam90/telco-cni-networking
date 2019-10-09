@@ -28,7 +28,7 @@ cd telco-cni-networking.git/
 
 ```
 cat <<EOF | kubectl create -f -
-apiVersion: "http://k8s.cni.cncf.io/v1"
+apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
   name: multus-test
