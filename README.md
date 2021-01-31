@@ -180,3 +180,36 @@ spec:
   }
 EOF
 ```
+Example - 3 with "whereabouts" CNI plugin 
+```
+cat <<EOF | kubectl create -f -
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: multus-template-4w
+spec:
+  config: '{
+    "cniVersion": "0.3.1",
+    "name": "multus-template-4w",
+    "plugins": [
+      {
+        "type": "ipvlan",
+        "master": "multus-1",
+        "ipam": {
+          "type": "whereabouts",
+          "datastore": "kubernetes",
+          "kubernetes": { "kubeconfig": "/etc/cni/net.d/whereabouts.d/whereabouts.kubeconfig" },
+          "range": "192.168.104.0/24",
+          "range_start": "192.168.104.25",
+          "range_end": "192.168.104.30",
+          "gateway": "192.168.104.1"
+
+        }
+      },
+      {
+        "type": "sbr"
+      }
+    ]
+  }  
+EOF
+```
