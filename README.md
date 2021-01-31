@@ -180,7 +180,7 @@ spec:
   }
 EOF
 ```
-Example - 3 with "whereabouts" CNI plugin 
+### Storing a configuration as a Custom Resource with SBR and Wherebouts CNI 
 ```
 cat <<EOF | kubectl create -f -
 apiVersion: "k8s.cni.cncf.io/v1"
@@ -213,3 +213,35 @@ spec:
   }  
 EOF
 ```
+Deploy the POD
+```
+#Create the deployment 
+
+cat <<EOF | kubectl create -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multus-whereabout-cni-test
+  labels:
+    app: centos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: centos
+  template:
+    metadata:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: multus-template-4w
+      labels:
+        app: centos
+    spec:  
+      containers:
+      - name: samplepod-3
+        command: ["/bin/bash", "-c", "sleep 2000000000000"]
+        image: centos
+        securityContext:
+           privileged: true
+EOF
+```
+
