@@ -101,4 +101,43 @@ EOF
 ```
 
 
+### Storing a configuration as a Custom Resource with SBR
+```
+cat <<EOF | kubectl create -f -
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: multus-template-2
+spec:
+  config: '{
+    "cniVersion": "0.3.1",
+    "name": "multus-template-2",
+    "plugins": [
+      {
+        "type": "ipvlan",
+        "master": "multus-1",
+        "ipam": {
+          "type": "host-local",
+          "ranges": [
+          [
+            {
+              "subnet": "192.168.104.0/24",
+              "rangeStart": "192.168.104.20",
+              "rangeEnd": "192.168.104.22",
+              "gateway": "192.168.104.1"
+            }
+          ]
+        ],
+          "dns": {
+            "nameservers" : ["10.46.82.129"]
+          }
+        }
+      },
+      {
+        "type": "sbr"
+      }
+    ]
+  }'
+EOF
+```
 
