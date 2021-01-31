@@ -17,8 +17,8 @@ Ideally this script can me mounted using a configMap with an Init Container. For
 ## Examples: 
 
 1. Using Init Containers 
-2. Using SBR ( Source based Routing)
-3. Using SBR and Whereabouts (recommended)
+2. Using [SBR](https://www.cni.dev/plugins/meta/sbr/) ( Source based Routing)
+3. Using SBR and [Whereabouts](https://github.com/openshift/whereabouts-cni) (recommended)
 
 
 ### Clone repository 
@@ -32,6 +32,7 @@ cd telco-cni-networking.git/
 
 ### Storing a configuration as a Custom Resource
 
+Example -1 
 ```
 cat <<EOF | kubectl create -f -
 apiVersion: k8s.cni.cncf.io/v1
@@ -71,7 +72,7 @@ EOF
 kubectl create configmap wrapper --from-file=multus-default-route.sh
 ```
 
-### Create POD with an InitContainer which will mount you configMap and run your bash script 
+Create POD with an InitContainer which will mount you configMap and run your bash script 
 
 ```
 cat <<EOF | kubectl create -f -
@@ -108,9 +109,9 @@ EOF
 
 ## 2. Using SBR
 
-### Storing a configuration as a Custom Resource with SBR 
+Storing a configuration as a Custom Resource with SBR 
 
-Example - 1
+Example - 2.1
 
 ```
 cat <<EOF | kubectl create -f -
@@ -151,7 +152,7 @@ spec:
 EOF
 ```
 
-Example - 2
+Example - 2.2
 ```
 cat <<EOF | kubectl create -f -
 apiVersion: "k8s.cni.cncf.io/v1"
@@ -190,7 +191,7 @@ EOF
 
 ## 3. Using SBR and Wherebouts
 
-Example -1
+Example - 3.1
 ```
 cat <<EOF | kubectl create -f -
 apiVersion: "k8s.cni.cncf.io/v1"
