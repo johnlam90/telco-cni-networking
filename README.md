@@ -187,7 +187,10 @@ spec:
   }
 EOF
 ```
-## 1. Using SBR and Wherebouts
+
+## 3. Using SBR and Wherebouts
+
+Example -1
 ```
 cat <<EOF | kubectl create -f -
 apiVersion: "k8s.cni.cncf.io/v1"
