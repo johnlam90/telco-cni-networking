@@ -14,7 +14,11 @@ Ideally this script can me mounted using a configMap with an Init Container. For
 - If you plan to use ipvlan, make sure kernel is upgraded to [4.4](https://github.com/intel/multus-cni/issues/347)
 
 
-## Example: 
+## Examples: 
+
+1. Using Init Containers 
+2. Using SBR ( Source based Routing)
+3. Using SBR and Whereabouts (recommended)
 
 
 ### Clone repository 
@@ -23,6 +27,8 @@ git clone https://github.com/lam42/telco-cni-networking.git
 cd telco-cni-networking.git/
 ```
 
+
+## 1. Using Init Containers
 
 ### Storing a configuration as a Custom Resource
 
@@ -100,6 +106,7 @@ spec:
 EOF
 ```
 
+## 2. Using SBR
 
 ### Storing a configuration as a Custom Resource with SBR 
 
@@ -180,7 +187,7 @@ spec:
   }
 EOF
 ```
-### Storing a configuration as a Custom Resource with SBR and Wherebouts CNI 
+## 1. Using SBR and Wherebouts
 ```
 cat <<EOF | kubectl create -f -
 apiVersion: "k8s.cni.cncf.io/v1"
