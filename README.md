@@ -76,13 +76,12 @@ metadata:
   annotations:
     k8s.v1.cni.cncf.io/networks:  multus-test
 spec:
-  nodeName: worker-1
   initContainers:
   - name: samplepod
-    command: ["/tmp/multus-default-route.sh"]
+    command: ["/var/empty/multus-default-route.sh"]
     volumeMounts:
     - name: wrapper
-      mountPath: /tmp
+      mountPath: /var/empty
     image: centos
     securityContext:
       privileged: true
