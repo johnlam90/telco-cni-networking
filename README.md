@@ -185,7 +185,7 @@ spec:
         "type": "sbr"
       }
     ]
-  }
+  }'
 EOF
 ```
 
@@ -221,7 +221,7 @@ spec:
         "type": "sbr"
       }
     ]
-  }  
+  }'
 EOF
 ```
 Deploy the POD
